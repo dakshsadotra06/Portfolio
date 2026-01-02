@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ishwari | Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    /* ---------- RESET ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ---------- CURSOR ---------- */
+    .cursor {
+      width: 8px;
+      height: 8px;
+      background: #f9004d;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .cursor-follower {
+      width: 30px;
+      height: 30px;
+      border: 2px solid #f9004d;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.15s ease;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    nav {
+      position: fixed;
+      width: 100%;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .logo span {
+      color: #f9004d;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav ul li a:hover {
+      color: #f9004d;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(249,0,77,0.25), transparent 60%);
+      animation: pulse 6s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: 0.4; }
+      to { opacity: 0.8; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 20px;
+    }
+
+    .hero-content h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(36px, 6vw, 70px);
+      margin-bottom: 20px;
+    }
+
+    .hero-content h3 {
+      font-size: 18px;
+      line-height: 28px;
+      max-width: 700px;
+      margin: auto;
+      opacity: 0.9;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section {
+      padding: 100px 10%;
+    }
+
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .about img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+    }
+
+    .about-text {
+      max-width: 550px;
+    }
+
+    .about-text h2 {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+
+    .about-text span {
+      color: #f9004d;
+    }
+
+    .about-text p {
+      line-height: 28px;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 12px 30px;
+      background: #f9004d;
+      border: none;
+      color: #fff;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: transparent;
+      border: 2px solid #f9004d;
+    }
+
+    /* ---------- SKILLS ---------- */
+    .skills h2 {
+      text-align: center;
+      font-size: 50px;
+      margin-bottom: 50px;
+    }
+
+    .skill-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+    
+
+    .card {
+      background: #191919;
+      width: 300px;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card i {
+      font-size: 40px;
+      color: #f9004d;
+      margin-bottom: 20px;
+    }
+
+    .card h5 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      font-size: 15px;
+      line-height: 25px;
+      opacity: 0.9;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #101010;
+      padding: 40px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .social a {
+      display: inline-flex;
+      width: 45px;
+      height: 45px;
+      background: #f9004d;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      margin: 0 8px;
+      text-decoration: none;
+    }
+
+    .social a:hover {
+      transform: scale(1.2);
+    }
+    /* ===== Moving Background Canvas ===== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+#bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* keeps text above background */
+}
+
+
+    /* ---------- MOBILE ---------- */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Portfolio</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+   
+
+  <div class="hero" id="home">
+    <canvas id="bg"></canvas>
+    <div class="hero-content">
+      <h4>Hello, my name is</h4>
+      <h1><span id="typewriter"></span></h1>
+      <h3>
+        An AI & Data Science engineering student exploring web development, AI, and creative coding by building projects, participating in hackathons, and experimenting with new ideas. I love learning by doing and turning ideas into interactive applications.
+      </h3>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <div class="about">
+      <img src="C:\Users\Ishwari\Downloads\ChatGPT Image Jan 2, 2026, 06_12_06 PM.png" alt="">
+      <div class="about-text">
+        <h2>About <span>Me</span></h2>
+        <p>
+          I am an AI & Data Science engineering student (2025–2029) at NxtWave Institute of Advanced Technology, driven by a strong passion for coding and continuous learning. My core interests lie in problem-solving logic, creative coding, and web development, where I enjoy transforming ideas into structured and functional solutions. Through my academic journey, including schooling and intermediate education, I have developed a disciplined approach to learning and a solid analytical foundation. I actively explore emerging technologies through hands-on projects, hackathons, and experimentation to strengthen both my technical and creative skill set. I aim to grow into a versatile engineer by combining logical thinking with creativity.
+        </p>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="skills">
+    <h2>My Skills</h2>
+    <div class="skill-box">
+      <div class="card">
+       <i class="fa-solid fa-globe"></i>
+        <h5>Web Development</h5>
+        <p>Skilled in web development, with experience in building responsive, interactive websites using modern technologies and clean, user-focused design principles.</p>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-database"></i>
+        <h5>Data Science</h5>
+        <p>Experienced in data science fundamentals, with hands-on exposure to data analysis, data preprocessing, and deriving meaningful insights using Python-based tools.</p>
+      </div>
+      <div class="card">
+        <i class="fa-brands fa-python"></i> 
+        <h5>Python Programming</h5>
+        <p>Proficient in Python programming, with experience in writing clean, efficient code for problem-solving, data handling, and application development.</p>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-robot"></i>
+        <h5>Languages</h5>
+        <p><p>HTML5</p>
+        <p>CSS3</p>
+      <p>JAVASCRIPT</p>
+    <p>Python</p></p>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <h5>UI and styling</h5>
+        <p><p>Claude</p>
+        <p>Canva</p>
+      <p>Replit</p>
+    <p>Bootstrap</p></p>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-code"></i>
+        <h5>Languages I speak</h5>
+        <p><p>Hindi
+
+        </p>
+       
+     
+    <p>English</p></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>Daksh Sadotra</p>
+    <div class="social">
+      
+      <a href="https://www.linkedin.com/in/daksh-sadotra-5067ba355/"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/dakshsadotra06"><i class="fab fa-github"></i></a>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+   <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
+<script src="script.js"></script>
+
+
+  <script>
+    /* Typewriter */
+    const text = "Daksh Sadotra";
+let i = 0;
+const speed = 60; // smaller = faster
+
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("typewriter").textContent += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+
+window.addEventListener("DOMContentLoaded", typeWriter);
+ const canvas = document.getElementById("bg");
+
+/* Scene */
+const scene = new THREE.Scene();
+
+/* Camera */
+const camera = new THREE.PerspectiveCamera(
+  65,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+camera.position.z = 12;
+
+/* Renderer */
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  alpha: true,
+  antialias: true
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+/* Stars */
+const starCount = 2500;
+const geometry = new THREE.BufferGeometry();
+const positions = new Float32Array(starCount * 3);
+
+for (let i = 0; i < starCount * 3; i++) {
+  positions[i] = (Math.random() - 0.5) * 300;
+}
+
+geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+const material = new THREE.PointsMaterial({
+  color: 0xffffff,
+  size: 0.7,
+  transparent: true,
+  opacity: 0.8
+});
+
+const stars = new THREE.Points(geometry, material);
+scene.add(stars);
+
+/* Fog (depth effect) */
+scene.fog = new THREE.Fog(0x000000, 50, 180);
+
+/* Mouse interaction */
+let mouseX = 0;
+let mouseY = 0;
+
+window.addEventListener("mousemove", e => {
+  mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+  mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+/* Animate */
+function animate() {
+  requestAnimationFrame(animate);
+
+  stars.rotation.y += 0.0004;
+  stars.rotation.x += 0.0002;
+
+  camera.position.x += (mouseX * 2 - camera.position.x) * 0.02;
+  camera.position.y += (-mouseY * 2 - camera.position.y) * 0.02;
+
+  renderer.render(scene, camera);
+}
+animate();
+
+/* Resize */
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+
+
+    /* Cursor */
+    const cursor = document.querySelector(".cursor");
+    const follower = document.querySelector(".cursor-follower");
+
+    document.addEventListener("mousemove", e => {
+      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      follower.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)`;
+    });
+  </script>
+
+</body>
+</html>
