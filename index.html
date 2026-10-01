@@ -1,512 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daksh | Portfolio</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
-  <style>
-    /* ---------- RESET ---------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Josefin Sans', sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #000;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    /* ---------- CURSOR ---------- */
-    .cursor {
-      width: 8px;
-      height: 8px;
-      background: #f9004d;
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    .cursor-follower {
-      width: 30px;
-      height: 30px;
-      border: 2px solid #f9004d;
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9998;
-      transition: transform 0.15s ease;
-    }
-
-    /* ---------- NAVBAR ---------- */
-    nav {
-      position: fixed;
-      width: 100%;
-      padding: 20px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-    }
-
-    .logo {
-      font-size: 28px;
-      font-weight: 700;
-    }
-
-    .logo span {
-      color: #f9004d;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-    }
-
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    nav ul li a:hover {
-      color: #f9004d;
-    }
-
-    /* ---------- HERO ---------- */
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, rgba(249,0,77,0.25), transparent 60%);
-      animation: pulse 6s infinite alternate;
-    }
-
-    @keyframes pulse {
-      from { opacity: 0.4; }
-      to { opacity: 0.8; }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 20px;
-    }
-
-    .hero-content h4 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(36px, 6vw, 70px);
-      margin-bottom: 20px;
-    }
-
-    .hero-content h3 {
-      font-size: 18px;
-      line-height: 28px;
-      max-width: 700px;
-      margin: auto;
-      opacity: 0.9;
-    }
-
-    /* ---------- SECTIONS ---------- */
-    section {
-      padding: 100px 10%;
-    }
-
-    .about {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .about img {
-      width: 100%;
-      max-width: 400px;
-      border-radius: 20px;
-    }
-
-    .about-text {
-      max-width: 550px;
-    }
-
-    .about-text h2 {
-      font-size: 50px;
-      margin-bottom: 20px;
-    }
-
-    .about-text span {
-      color: #f9004d;
-    }
-
-    .about-text p {
-      line-height: 28px;
-      opacity: 0.9;
-      margin-bottom: 30px;
-    }
-
-    button {
-      padding: 12px 30px;
-      background: #f9004d;
-      border: none;
-      color: #fff;
-      border-radius: 30px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: transparent;
-      border: 2px solid #f9004d;
-    }
-
-    /* ---------- SKILLS ---------- */
-    .skills h2 {
-      text-align: center;
-      font-size: 50px;
-      margin-bottom: 50px;
-    }
-
-    .skill-box {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
-    }
-    
-
-    .card {
-      background: #191919;
-      width: 300px;
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-    }
-
-    .card i {
-      font-size: 40px;
-      color: #f9004d;
-      margin-bottom: 20px;
-    }
-
-    .card h5 {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-
-    .card p {
-      font-size: 15px;
-      line-height: 25px;
-      opacity: 0.9;
-    }
-
-    /* ---------- FOOTER ---------- */
-    footer {
-      background: #101010;
-      padding: 40px;
-      text-align: center;
-    }
-
-    footer p {
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
-
-    .social a {
-      display: inline-flex;
-      width: 45px;
-      height: 45px;
-      background: #f9004d;
-      border-radius: 50%;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      margin: 0 8px;
-      text-decoration: none;
-    }
-
-    .social a:hover {
-      transform: scale(1.2);
-    }
-    /* ===== Moving Background Canvas ===== */
-
-.hero {
-  position: relative;
-  overflow: hidden;
-}
-
-#bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2; /* keeps text above background */
-}
-
-
-    /* ---------- MOBILE ---------- */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daksh Sadotra -- Full-Stack & AI Developer</title>
+<meta name="description" content="Daksh Sadotra — B.Tech CSE student building full-stack and AI-powered products. Projects: KrishiSetu, WebIris, GyanSetu.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23B600A8'/%3E%3Cstop offset='.5' stop-color='%237621B0'/%3E%3Cstop offset='1' stop-color='%2318011F'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='30' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EDS%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daksh Sadotra">
+<meta property="og:title" content="Daksh Sadotra -- Full-Stack & AI Developer">
+<meta property="og:description" content="B.Tech CSE student building full-stack and AI-powered products. Projects: KrishiSetu, WebIris, GyanSetu.">
+<meta property="og:url" content="https://dakshsadotra06.github.io/Portfolio/">
+<meta property="og:image" content="https://dakshsadotra06.github.io/Portfolio/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Daksh Sadotra -- Full-Stack & AI Developer">
+<meta name="twitter:description" content="B.Tech CSE student building full-stack and AI-powered products. Projects: KrishiSetu, WebIris, GyanSetu.">
+<meta name="twitter:image" content="https://dakshsadotra06.github.io/Portfolio/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0C0C0C;--ice:#D7E2EA;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+html,body{background:#0C0C0C;font-family:'Kanit',sans-serif;color:var(--ice)}
+a{color:inherit;text-decoration:none}
+main{background:#0C0C0C;overflow-x:clip}
+.hg{background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.h2{font-weight:900;text-transform:uppercase;line-height:1;letter-spacing:-.025em;text-align:center;font-size:clamp(3rem,12vw,160px);padding-bottom:.08em}
+/* fade in */
+.fi{opacity:0;transform:translate(var(--x,0),var(--y,30px));transition:opacity .7s cubic-bezier(.25,.1,.25,1) var(--d,0s),transform .7s cubic-bezier(.25,.1,.25,1) var(--d,0s)}
+.fi.in{opacity:1;transform:none}
+/* buttons */
+.cbtn{display:inline-block;border-radius:999px;color:#fff;font-weight:500;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap;
+ padding:12px 32px;font-size:.75rem;background:linear-gradient(123deg,#18011F 7%,#B600A8 37%,#7621B0 72%,#BE4C00 100%);
+ box-shadow:0 4px 4px rgba(181,1,167,.25),4px 4px 12px #7721B1 inset;outline:2px solid #fff;outline-offset:-3px}
+.gbtn{display:inline-block;border-radius:999px;border:2px solid var(--ice);color:var(--ice);font-weight:500;text-transform:uppercase;letter-spacing:.1em;padding:12px 32px;font-size:.875rem;transition:background .2s;white-space:nowrap}
+.gbtn:hover{background:rgba(215,226,234,.1)}
+@media(min-width:640px){.cbtn{padding:14px 40px;font-size:.875rem}.gbtn{padding:14px 40px;font-size:1rem}}
+@media(min-width:768px){.cbtn{padding:16px 48px;font-size:1rem}}
+/* hero */
+.hero{height:100vh;height:100svh;min-height:520px;display:flex;flex-direction:column;padding:0 24px;position:relative;overflow-x:clip}
+nav{display:flex;justify-content:space-between;padding-top:24px;text-transform:uppercase;font-weight:500;letter-spacing:.05em;font-size:clamp(.875rem,1.6vw,1.4rem)}
+nav a{transition:opacity .2s}nav a:hover{opacity:.7}
+.hwrap{overflow:hidden;width:100%;margin-top:24px}
+.hwrap h1{font-weight:900;text-transform:uppercase;letter-spacing:-.025em;line-height:1;white-space:nowrap;display:inline-block;padding-bottom:.1em}
+.hbar{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:28px;position:relative;z-index:20}
+.hbar p{font-weight:300;text-transform:uppercase;letter-spacing:.025em;line-height:1.25;font-size:clamp(.75rem,1.4vw,1.5rem);max-width:160px}
+.ppos{position:absolute;left:50%;transform:translateX(-50%);z-index:10;width:280px;top:50%;margin-top:-180px}
+.magnet{will-change:transform}
+.arch{aspect-ratio:4/5;border-radius:999px 999px 0 0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+ background:radial-gradient(120% 80% at 30% 15%,#B600A8 0%,#7621B0 40%,#18011F 85%)}
+.arch::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 70% 90%,rgba(190,76,0,.55),transparent 70%)}
+.arch span{position:relative;z-index:1;font-weight:900;font-size:clamp(5rem,13vw,11rem);letter-spacing:-.04em;color:rgba(255,255,255,.92)}
+@media(min-width:640px){.hbar{padding-bottom:32px}.hbar p{max-width:220px}.hwrap{margin-top:16px}.ppos{top:auto;bottom:0;margin-top:0;width:360px}}
+@media(min-width:768px){.hbar{padding-bottom:40px}.hbar p{max-width:260px}.hero{padding:0 40px}.ppos{width:440px}}
+@media(min-width:1024px){.ppos{width:520px}}
+/* marquee */
+.marq{background:#0C0C0C;padding:96px 0 40px}
+@media(min-width:640px){.marq{padding-top:128px}}@media(min-width:768px){.marq{padding-top:160px}}
+.row{display:flex;gap:12px;width:max-content;will-change:transform;margin-bottom:12px}
+.tile{width:420px;height:270px;border-radius:16px;flex:none;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;
+ border:1px solid rgba(215,226,234,.14);position:relative;overflow:hidden}
+.tile b{font-weight:800;font-size:2.4rem;line-height:1;text-transform:uppercase;letter-spacing:-.02em;color:#fff;position:relative}
+.tile i{font-style:normal;font-weight:300;letter-spacing:.15em;text-transform:uppercase;font-size:.75rem;color:rgba(255,255,255,.65);position:relative;margin-bottom:8px}
+/* about */
+.about{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:64px;padding:80px 20px;position:relative}
+.txtblk{display:flex;flex-direction:column;align-items:center;gap:40px;z-index:1}
+#atxt{font-weight:500;text-align:center;line-height:1.625;max-width:560px;font-size:clamp(1rem,2vw,1.35rem);color:var(--ice)}
+#atxt .w{display:inline-block;white-space:nowrap}
+.orb{position:absolute;border-radius:50%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-weight:800;color:rgba(255,255,255,.92);
+ box-shadow:inset -14px -18px 34px rgba(0,0,0,.45),inset 10px 12px 26px rgba(255,255,255,.3);z-index:0}
+.o1{width:120px;top:4%;left:1%;background:radial-gradient(circle at 32% 28%,#d9b3ff,#7621B0 55%,#18011F);font-size:1.6rem}
+.o2{width:100px;bottom:8%;left:3%;background:radial-gradient(circle at 32% 28%,#ffd0a0,#BE4C00 55%,#2a1100);font-size:1.4rem}
+.o3{width:120px;top:4%;right:1%;background:radial-gradient(circle at 32% 28%,#ffb3f4,#B600A8 55%,#2a0030);font-size:1.6rem}
+.o4{width:130px;bottom:8%;right:3%;background:radial-gradient(circle at 32% 28%,#d7e2ea,#646973 55%,#15181c);font-size:1.5rem}
+@media(min-width:640px){.about{gap:80px;padding:80px 32px}.o1,.o3{width:160px;left:2%}.o3{left:auto;right:2%}.o2{width:140px;left:6%}.o4{width:170px;right:6%}}
+@media(min-width:768px){.about{padding:80px 40px}.o1,.o3{width:210px}.o1{left:4%}.o3{right:4%}.o2{width:180px;left:10%}.o4{width:220px;right:10%}}
+/* services */
+.svc{background:#fff;color:#0C0C0C;border-radius:40px 40px 0 0;padding:80px 20px}
+.svc .h2{color:#0C0C0C;margin-bottom:64px}
+.list{max-width:64rem;margin:0 auto}
+.item{display:flex;gap:clamp(16px,4vw,56px);align-items:flex-start;padding:32px 0;border-top:1px solid rgba(12,12,12,.15)}
+.item:last-child{border-bottom:1px solid rgba(12,12,12,.15)}
+.num{font-weight:900;line-height:1;font-size:clamp(3rem,10vw,140px);color:#0C0C0C;min-width:1.3em}
+.item h3{font-weight:500;text-transform:uppercase;font-size:clamp(1rem,2.2vw,2.1rem);margin-bottom:8px}
+.item p{font-weight:300;line-height:1.625;max-width:42rem;font-size:clamp(.85rem,1.6vw,1.25rem);opacity:.6}
+@media(min-width:640px){.svc{border-radius:50px 50px 0 0;padding:96px 32px}.svc .h2{margin-bottom:80px}.item{padding:40px 0}}
+@media(min-width:768px){.svc{border-radius:60px 60px 0 0;padding:128px 40px}.svc .h2{margin-bottom:112px}.item{padding:48px 0}}
+/* projects */
+.proj{background:#0C0C0C;border-radius:40px 40px 0 0;margin-top:-40px;position:relative;z-index:10;padding:80px 20px 40px}
+.proj .h2{margin-bottom:48px}
+.cw{height:85vh;position:relative}
+.card{position:sticky;top:96px;border:2px solid var(--ice);background:#0C0C0C;border-radius:40px;padding:16px;transform-origin:top center;will-change:transform}
+.ctop{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:8px 12px 16px}
+.cl{display:flex;align-items:center;gap:clamp(12px,2.5vw,32px)}
+.cl .num{font-size:clamp(3rem,8vw,120px)}
+.cl small{display:block;font-weight:300;letter-spacing:.15em;text-transform:uppercase;font-size:clamp(.65rem,1.1vw,.9rem);opacity:.7}
+.cl h3{font-weight:600;text-transform:uppercase;font-size:clamp(1.1rem,2.6vw,2.4rem);line-height:1.1}
+.grid{display:grid;grid-template-columns:40fr 60fr;gap:12px}
+.col{display:flex;flex-direction:column;gap:12px}
+.pn{border:1px solid rgba(215,226,234,.2);background:linear-gradient(160deg,rgba(118,33,176,.22),rgba(24,1,31,.4) 60%,rgba(190,76,0,.14));border-radius:clamp(24px,4vw,60px);padding:clamp(14px,2.4vw,36px);display:flex;flex-direction:column;justify-content:center}
+.p1{min-height:clamp(130px,16vw,230px)}.p2{min-height:clamp(160px,22vw,340px)}.p3{height:100%}
+.big{font-weight:900;line-height:1;font-size:clamp(2.2rem,6vw,5.5rem)}
+.lab{font-weight:300;text-transform:uppercase;letter-spacing:.1em;font-size:clamp(.6rem,1.1vw,.9rem);opacity:.75;margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{border:1px solid rgba(215,226,234,.35);border-radius:999px;padding:3px 10px;font-size:clamp(.6rem,1.1vw,.9rem);text-transform:uppercase;letter-spacing:.06em}
+.p3 p{font-weight:300;line-height:1.5;font-size:clamp(.78rem,1.4vw,1.15rem)}
+.p3 ul{list-style:none;margin-top:12px;font-size:clamp(.7rem,1.2vw,1rem);font-weight:500;line-height:1.7;color:#BBCCD7}
+@media(min-width:640px){.proj{border-radius:50px 50px 0 0;margin-top:-48px;padding:96px 32px 40px}.card{border-radius:50px;padding:24px}}
+@media(min-width:768px){.proj{border-radius:60px 60px 0 0;margin-top:-56px;padding:128px 40px 40px}.card{top:128px;border-radius:60px;padding:32px}.proj .h2{margin-bottom:64px}}
+/* contact */
+footer{padding:96px 20px 48px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:32px}
+footer .h2{font-size:clamp(3rem,10vw,140px)}
+.links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 32px;text-transform:uppercase;letter-spacing:.1em;font-weight:500;font-size:.9rem}
+.links a{border-bottom:1px solid rgba(215,226,234,.4);padding-bottom:2px}
+.em{font-weight:500;font-size:clamp(1.1rem,3vw,2rem);letter-spacing:.02em}
+footer small{font-weight:300;opacity:.6;letter-spacing:.05em;max-width:34rem;line-height:1.6}
+@media(prefers-reduced-motion:reduce){.fi{opacity:1;transform:none;transition:none}}
+</style>
 </head>
-
 <body>
-
-  <!-- Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
-
-  <!-- Navbar -->
-  <nav>
-    <div class="logo">Portfolio</div>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+<main>
+<!-- HERO -->
+<section class="hero" id="top">
+  <nav class="fi" style="--y:-20px">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
   </nav>
-
-  <!-- Hero -->
-   
-
-  <div class="hero" id="home">
-    <canvas id="bg"></canvas>
-    <div class="hero-content">
-      <h4>Hello, my name is</h4>
-      <h1><span id="typewriter"></span></h1>
-      <h3>
-        An AI & Data Science engineering student exploring web development, AI, and creative coding by building projects, participating in hackathons, and experimenting with new ideas. I love learning by doing and turning ideas into interactive applications.
-      </h3>
-    </div>
+  <div class="hwrap fi" style="--y:40px;--d:.15s"><h1 class="hg" id="h1">Hi, i&apos;m daksh</h1></div>
+  <div class="ppos"><div class="fi" style="--y:30px;--d:.6s"><div class="magnet" id="mag"><div class="arch"><span>DS</span></div></div></div></div>
+  <div class="hbar">
+    <p class="fi" style="--y:20px;--d:.35s">a b.tech cse student building full-stack and ai products that solve real problems</p>
+    <a class="cbtn fi" style="--y:20px;--d:.5s" href="#contact">Contact Me</a>
   </div>
+</section>
 
-  <!-- About -->
-  <section id="about">
-    <div class="about">
-      <img src="https://drive.google.com/file/d/1Zd4ZsFyugferADZPzbTIz8o2AA1HQv3F/view?usp=drivesdk" alt="">
-      <div class="about-text">
-        <h2>About <span>Me</span></h2>
-        <p>
-          I am an AI & Data Science engineering student (2025–2029) at NxtWave Institute of Advanced Technology, driven by a strong passion for coding and continuous learning. My core interests lie in problem-solving logic, creative coding, and web development, where I enjoy transforming ideas into structured and functional solutions. Through my academic journey, including schooling and intermediate education, I have developed a disciplined approach to learning and a solid analytical foundation. I actively explore emerging technologies through hands-on projects, hackathons, and experimentation to strengthen both my technical and creative skill set. I aim to grow into a versatile engineer by combining logical thinking with creativity.
-        </p>
-        
-      </div>
-    </div>
-  </section>
+<!-- MARQUEE -->
+<section class="marq" id="marq"><div class="row" id="r1"></div><div class="row" id="r2"></div></section>
 
-  <!-- Skills -->
-  <section id="skills" class="skills">
-    <h2>My Skills</h2>
-    <div class="skill-box">
-      <div class="card">
-       <i class="fa-solid fa-globe"></i>
-        <h5>Web Development</h5>
-        <p>Skilled in web development, with experience in building responsive, interactive websites using modern technologies and clean, user-focused design principles.</p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-database"></i>
-        <h5>Data Science</h5>
-        <p>Experienced in data science fundamentals, with hands-on exposure to data analysis, data preprocessing, and deriving meaningful insights using Python-based tools.</p>
-      </div>
-      <div class="card">
-        <i class="fa-brands fa-python"></i> 
-        <h5>Python Programming</h5>
-        <p>Proficient in Python programming, with experience in writing clean, efficient code for problem-solving, data handling, and application development.</p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-robot"></i>
-        <h5>Languages</h5>
-        <p><p>HTML5</p>
-        <p>CSS3</p>
-      <p>JAVASCRIPT</p>
-    <p>Python</p></p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-wand-magic-sparkles"></i>
-        <h5>UI and styling</h5>
-        <p><p>Claude</p>
-        <p>Canva</p>
-      <p>Replit</p>
-    <p>Bootstrap</p></p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-code"></i>
-        <h5>Languages I speak</h5>
-        <p><p>Hindi
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="orb o1 fi" style="--x:-80px;--y:0;--d:.1s">&lt;/&gt;</div>
+  <div class="orb o2 fi" style="--x:-80px;--y:0;--d:.25s">C++</div>
+  <div class="orb o3 fi" style="--x:80px;--y:0;--d:.15s">AI</div>
+  <div class="orb o4 fi" style="--x:80px;--y:0;--d:.3s">DB</div>
+  <div class="txtblk">
+    <h2 class="h2 hg fi" style="--y:40px">About me</h2>
+    <p id="atxt">Second-year B.Tech CSE (AI &amp; Data Science) student at NIAT in collaboration with ADYPU, Pune. I build full-stack and AI-powered products end to end, take part in hackathons, and help organise them on campus. Let's build something useful together!</p>
+  </div>
+  <a class="cbtn" href="#contact">Contact Me</a>
+</section>
 
-        </p>
-       
-     
-    <p>English</p></p>
-      </div>
-    </div>
-  </section>
+<!-- SKILLS -->
+<section class="svc" id="skills">
+  <h2 class="h2">Skills</h2>
+  <div class="list">
+    <div class="item fi"><div class="num">01</div><div><h3>Frontend</h3><p>React, Next.js and Tailwind CSS interfaces, including bilingual English/Hindi experiences built for low-bandwidth devices.</p></div></div>
+    <div class="item fi" style="--d:.1s"><div class="num">02</div><div><h3>Backend &amp; Data</h3><p>Node.js and Express APIs with PostgreSQL and Supabase, REST design and JWT authentication.</p></div></div>
+    <div class="item fi" style="--d:.2s"><div class="num">03</div><div><h3>AI &amp; Automation</h3><p>Gemini Vision powered browser automation with a deterministic validator and a full audit trail of every action.</p></div></div>
+    <div class="item fi" style="--d:.3s"><div class="num">04</div><div><h3>Languages</h3><p>JavaScript, Python, C++, HTML and CSS. C++ is newer, and I practise data structures and algorithms on LeetCode.</p></div></div>
+    <div class="item fi" style="--d:.4s"><div class="num">05</div><div><h3>Hackathons &amp; Leadership</h3><p>Selected team at the IIT Jammu hackathon, participant in several hackathons and ideathons, and volunteer and organiser of college events at ADYPU.</p></div></div>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer id="contact">
-    <p>Daksh Sadotra</p>
-    <div class="social">
-      
-      <a href="https://www.linkedin.com/in/daksh-sadotra-5067ba355/"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/dakshsadotra06"><i class="fab fa-github"></i></a>
-    </div>
-  </footer>
+<!-- PROJECTS -->
+<section class="proj" id="projects">
+  <h2 class="h2 hg fi" style="--y:40px">Projects</h2>
+  <div id="stack">
+    <div class="cw"><article class="card">
+      <div class="ctop"><div class="cl"><div class="num">01</div><div><small>Team project &middot; Agritech</small><h3>KrishiSetu</h3></div></div>
+      <a class="gbtn" href="https://github.com/dakshsadotra06/KrishiSetu" target="_blank" rel="noopener">GitHub</a></div>
+      <div class="grid"><div class="col">
+        <div class="pn p1"><div class="big hg">26</div><div class="lab">farmer, order &amp; admin routes</div></div>
+        <div class="pn p2"><div class="chips"><span>Next.js</span><span>React</span><span>Tailwind</span><span>PostgreSQL</span></div></div></div>
+        <div class="pn p3"><p>Direct Mandi &amp; Fair Buyer Gateway. Cuts mandi queue delays and payment-default risk for farmers selling to institutional buyers, with procurement slots, a buyer marketplace and trust logic. Prototype on mock data.</p>
+        <ul><li>8 PostgreSQL data models</li><li>30% advance, 70% final settlement</li><li>Trust suite: 8/8 tests passing</li><li>English / Hindi</li></ul></div></div>
+    </article></div>
+    <div class="cw"><article class="card" style="top:124px">
+      <div class="ctop"><div class="cl"><div class="num">02</div><div><small>AI &amp; Automation</small><h3>WebIris</h3></div></div>
+      <a class="gbtn" href="https://github.com/dakshsadotra06/WebIris" target="_blank" rel="noopener">GitHub</a></div>
+      <div class="grid"><div class="col">
+        <div class="pn p1"><div class="big hg">10</div><div class="lab">max steps per agent run</div></div>
+        <div class="pn p2"><div class="chips"><span>React</span><span>Node.js</span><span>Express</span><span>Gemini Vision</span><span>Supabase</span><span>JWT</span></div></div></div>
+        <div class="pn p3"><p>An AI browser agent that turns natural-language instructions into browser actions. Every proposed action is checked against the current page before it runs.</p>
+        <ul><li>Perception, reasoning, validation, execution, verification</li><li>Full runs and steps audit trail</li><li>12-hour JWT sessions, bcrypt hashing</li></ul></div></div>
+    </article></div>
+    <div class="cw"><article class="card" style="top:152px">
+      <div class="ctop"><div class="cl"><div class="num">03</div><div><small>Education &middot; Offline-first PWA</small><h3>GyanSetu</h3></div></div>
+      <a class="gbtn" href="https://github.com/dakshsadotra06/rural-learning-platform" target="_blank" rel="noopener">GitHub</a></div>
+      <div class="grid"><div class="col">
+        <div class="pn p1"><div class="big hg">5&ndash;8</div><div class="lab">grade levels supported</div></div>
+        <div class="pn p2"><div class="chips"><span>React 19</span><span>Tailwind</span><span>Web Speech API</span></div></div></div>
+        <div class="pn p3"><p>Learning materials for students on budget phones and unreliable 2G/3G connections, available even with no internet, with progress stored on the device.</p>
+        <ul><li>4 grades &middot; 5 subjects &middot; English / Hindi</li><li>Quizzes, badges, printable certificates</li><li>Read-aloud and low-bandwidth mode</li></ul></div></div>
+    </article></div>
+  </div>
+</section>
 
-  <!-- JAVASCRIPT -->
-   <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
-<script src="script.js"></script>
+<footer id="contact">
+  <h2 class="h2 hg">Let&apos;s talk</h2>
+  <p class="em">dakshsadotra06@gmail.com</p>
+  <button class="cbtn" id="copyb" type="button" style="border:0;cursor:pointer;font-family:inherit">Copy Email</button>
+  <div class="links">
+    <a href="mailto:dakshsadotra06@gmail.com">Email</a>
+    <a href="https://github.com/dakshsadotra06" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/daksh-sadotra-5067ba355/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://leetcode.com/u/dakshsadotra/" target="_blank" rel="noopener">LeetCode</a>
+  </div>
+  <small>Daksh Sadotra &middot; B.Tech CSE (AI &amp; Data Science), NIAT in collaboration with Ajeenkya DY Patil University, Pune &middot; Pune, India</small>
+</footer>
+</main>
 
-
-  <script>
-    /* Typewriter */
-    const text = "Daksh Sadotra";
-let i = 0;
-const speed = 60; // smaller = faster
-
-function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("typewriter").textContent += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, speed);
-  }
+<script>
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+/* fade-in */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'50px'});
+document.querySelectorAll('.fi').forEach(el=>io.observe(el));
+/* fit hero heading to width */
+const h1=document.getElementById('h1');
+function fit(){h1.style.fontSize='100px';const w=h1.parentElement.clientWidth;h1.style.fontSize=(100*w/h1.scrollWidth*.985)+'px'}
+fit();addEventListener('resize',fit);document.fonts&&document.fonts.ready.then(fit);
+/* magnet */
+const mag=document.getElementById('mag'),PAD=150,STR=3;
+addEventListener('mousemove',e=>{
+  const r=mag.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=e.clientX-cx,dy=e.clientY-cy;
+  const near=Math.abs(dx)<r.width/2+PAD&&Math.abs(dy)<r.height/2+PAD;
+  mag.style.transition=near?'transform .3s ease-out':'transform .6s ease-in-out';
+  mag.style.transform=near?`translate3d(${dx/STR}px,${dy/STR}px,0)`:'translate3d(0,0,0)';
+});
+/* marquee */
+const row1=[['React','Stack'],['Next.js','Stack'],['Node.js','Stack'],['Express','Stack'],['PostgreSQL','Database'],['Supabase','Database'],['Tailwind CSS','Styling'],['Gemini API','AI'],['REST APIs','Backend'],['JWT Auth','Security'],['Git','Tooling']];
+const row2=[['JavaScript','Language'],['Python','Language'],['C++','Language'],['HTML & CSS','Language'],['26 routes','KrishiSetu'],['8 data models','KrishiSetu'],['8/8 tests passing','KrishiSetu'],['4 grades, 5 subjects','GyanSetu'],['10-step agent cap','WebIris'],['IIT Jammu','Hackathon']];
+const grads=['#18011F,#7621B0','#2a0030,#B600A8','#2a1100,#BE4C00','#15181c,#646973','#18011F,#BE4C00'];
+function build(el,data,off){let h='';for(let k=0;k<3;k++)data.forEach((d,i)=>{h+=`<div class="tile" style="background:linear-gradient(${120+((i+off)%5)*25}deg,${grads[(i+off)%5]})"><i>${d[1]}</i><b>${d[0].replace('&','&amp;')}</b></div>`});el.innerHTML=h}
+build(r1,row1,0);build(r2,row2,2);
+const marq=document.getElementById('marq'),R1=document.getElementById('r1'),R2=document.getElementById('r2');
+function setMargin(){R1.style.marginLeft=-(R1.scrollWidth/3)+'px'}setMargin();addEventListener('resize',setMargin);
+/* animated text */
+const at=document.getElementById('atxt'),txt=at.textContent;at.textContent='';at.setAttribute('aria-label',txt);
+const chars=[];
+txt.split(' ').forEach((w,wi,arr)=>{const s=document.createElement('span');s.className='w';
+  [...w].forEach(c=>{const k=document.createElement('span');k.textContent=c;k.style.opacity=.2;s.appendChild(k);chars.push(k)});
+  at.appendChild(s);if(wi<arr.length-1)at.appendChild(document.createTextNode(' '))});
+/* stacking cards */
+const stack=document.getElementById('stack'),cards=[...stack.querySelectorAll('.card')];
+function onScroll(){
+  const vh=innerHeight,y=scrollY;
+  const off=(y-(marq.getBoundingClientRect().top+y)+vh)*.3;
+  R1.style.transform=`translateX(${off-200}px)`;R2.style.transform=`translateX(${-(off-200)}px)`;
+  const r=at.getBoundingClientRect(),p=clamp((vh*.8-r.top)/(vh*.6+r.height)),n=chars.length;
+  chars.forEach((c,i)=>{c.style.opacity=.2+.8*clamp((p*1.15-i/n)*n/6)});
+  const sr=stack.getBoundingClientRect(),P=clamp(-sr.top/(sr.height-vh*.85+1)),N=cards.length;
+  cards.forEach((c,i)=>{const t=1-(N-1-i)*.03,q=clamp((P-i/N)/(1-i/N));c.style.transform=`scale(${1-(1-t)*q})`});
 }
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
 
-window.addEventListener("DOMContentLoaded", typeWriter);
- const canvas = document.getElementById("bg");
-
-/* Scene */
-const scene = new THREE.Scene();
-
-/* Camera */
-const camera = new THREE.PerspectiveCamera(
-  65,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  1000
-);
-camera.position.z = 12;
-
-/* Renderer */
-const renderer = new THREE.WebGLRenderer({
-  canvas,
-  alpha: true,
-  antialias: true
+/* contact: smooth scroll + copy email */
+document.querySelectorAll('a[href="#contact"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'})}));
+const cb=document.getElementById('copyb'),EM='dakshsadotra06@gmail.com';
+cb.addEventListener('click',async()=>{
+  let ok=false;
+  try{await navigator.clipboard.writeText(EM);ok=true}catch(_){}
+  if(!ok){try{const t=document.createElement('textarea');t.value=EM;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();ok=document.execCommand('copy');t.remove()}catch(_){}}
+  cb.textContent=ok?'Copied!':'Select email above';setTimeout(()=>cb.textContent='Copy Email',2000);
 });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-/* Stars */
-const starCount = 2500;
-const geometry = new THREE.BufferGeometry();
-const positions = new Float32Array(starCount * 3);
-
-for (let i = 0; i < starCount * 3; i++) {
-  positions[i] = (Math.random() - 0.5) * 300;
-}
-
-geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-
-const material = new THREE.PointsMaterial({
-  color: 0xffffff,
-  size: 0.7,
-  transparent: true,
-  opacity: 0.8
-});
-
-const stars = new THREE.Points(geometry, material);
-scene.add(stars);
-
-/* Fog (depth effect) */
-scene.fog = new THREE.Fog(0x000000, 50, 180);
-
-/* Mouse interaction */
-let mouseX = 0;
-let mouseY = 0;
-
-window.addEventListener("mousemove", e => {
-  mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-  mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-});
-
-/* Animate */
-function animate() {
-  requestAnimationFrame(animate);
-
-  stars.rotation.y += 0.0004;
-  stars.rotation.x += 0.0002;
-
-  camera.position.x += (mouseX * 2 - camera.position.x) * 0.02;
-  camera.position.y += (-mouseY * 2 - camera.position.y) * 0.02;
-
-  renderer.render(scene, camera);
-}
-animate();
-
-/* Resize */
-window.addEventListener("resize", () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
-
-
-
-    /* Cursor */
-    const cursor = document.querySelector(".cursor");
-    const follower = document.querySelector(".cursor-follower");
-
-    document.addEventListener("mousemove", e => {
-      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      follower.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)`;
-    });
-  </script>
-
+</script>
 </body>
 </html>
-
-
-
