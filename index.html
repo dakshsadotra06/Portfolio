@@ -42,7 +42,9 @@ main{background:#0C0C0C;overflow-x:clip}
 /* hero */
 .hero{height:100vh;height:100svh;min-height:520px;display:flex;flex-direction:column;padding:0 24px;position:relative;overflow-x:clip}
 nav{display:flex;justify-content:space-between;padding-top:24px;text-transform:uppercase;font-weight:500;letter-spacing:.05em;font-size:clamp(.875rem,1.6vw,1.4rem)}
-nav a{transition:opacity .2s}nav a:hover{opacity:.7}
+nav a{transition:opacity .2s,transform .2s}nav a:hover{opacity:.7}
+.rbtn{background:linear-gradient(135deg,#B600A8,#7621B0);color:#fff!important;padding:.55em 1.25em;border-radius:999px}
+.rbtn:hover{opacity:1!important;transform:translateY(-2px);box-shadow:0 8px 20px rgba(182,0,168,.45)}
 .hwrap{overflow:hidden;width:100%;margin-top:24px}
 .hwrap h1{font-weight:900;text-transform:uppercase;letter-spacing:-.025em;line-height:1;white-space:nowrap;display:inline-block;padding-bottom:.1em}
 .hbar{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:28px;position:relative;z-index:20}
@@ -125,7 +127,7 @@ footer small{font-weight:300;opacity:.6;letter-spacing:.05em;max-width:34rem;lin
 <!-- HERO -->
 <section class="hero" id="top">
   <nav class="fi" style="--y:-20px">
-    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a><a class="rbtn" href="./Daksh_Sadotra_CV.pdf" target="_blank" rel="noopener">Resume</a>
   </nav>
   <div class="hwrap fi" style="--y:40px;--d:.15s"><h1 class="hg" id="h1">Hi, i&apos;m daksh</h1></div>
   <div class="ppos"><div class="fi" style="--y:30px;--d:.6s"><div class="magnet" id="mag"><div class="arch"><span>DS</span></div></div></div></div>
@@ -206,6 +208,7 @@ footer small{font-weight:300;opacity:.6;letter-spacing:.05em;max-width:34rem;lin
     <a href="https://github.com/dakshsadotra06" target="_blank" rel="noopener">GitHub</a>
     <a href="https://www.linkedin.com/in/daksh-sadotra-5067ba355/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://leetcode.com/u/dakshsadotra/" target="_blank" rel="noopener">LeetCode</a>
+    <a href="./Daksh_Sadotra_CV.pdf" target="_blank" rel="noopener">Resume</a>
   </div>
   <small>Daksh Sadotra &middot; B.Tech CSE (AI &amp; Data Science), NIAT in collaboration with Ajeenkya DY Patil University, Pune &middot; Pune, India</small>
 </footer>
